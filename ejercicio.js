@@ -25,15 +25,15 @@ class Mago extends Personaje {
     this.hechizos = [
       {
         nombre: 'Llamarada',
-        dano: Math.floor(Math.random() * 200)
+        dano: Math.floor(Math.random() * 100)
       },
       {
         nombre: 'Maldicion',
-        dano: Math.floor(Math.random() * 300)
+        dano: Math.floor(Math.random() * 250)
       },
       {
         nombre: 'Fuego infernal',
-        dano: Math.floor(Math.random() * 400)
+        dano: Math.floor(Math.random() * 380)
       }
     ];
 
@@ -67,7 +67,7 @@ class Guerrero extends Personaje {
     this.armas = [
       {
         nombre: 'Espada templada',
-        dano: Math.floor(Math.random() * 150)
+        dano: Math.floor(Math.random() * 100)
       },
       {
         nombre: 'Daga de Damasco',
@@ -75,7 +75,7 @@ class Guerrero extends Personaje {
       },
       {
         nombre: 'Mazo pesado',
-        dano: Math.floor(Math.random() * 400)
+        dano: Math.floor(Math.random() * 300)
       }
     ];
       this.ataques = [
@@ -110,11 +110,11 @@ class Arquero extends Personaje {
       },
       {
         nombre: 'Flecha envenenada',
-        dano: Math.floor(Math.random() * 300)
+        dano: Math.floor(Math.random() * 200)
       },
       {
         nombre: 'Flecha incendiaria',
-        dano: Math.floor(Math.random() * 500)
+        dano: Math.floor(Math.random() * 350)
       }
     ];
     this.ataques = [
@@ -156,6 +156,8 @@ function luchar(personajes) {
       atacante.ataqueAleatorio(atacado);
 
       if (atacado.vida <= 0) {
+        atacado.vida = 0
+        console.log(`(Vida restante de ${atacado.nombre}: ${atacado.vida})`)
         console.log(`💀 ${atacado.nombre} ha muerto a manos de ${atacante.nombre}`);
         personajes.splice(personajes.indexOf(atacado), 1);
 
@@ -165,9 +167,13 @@ function luchar(personajes) {
         }
         
       } else {
+        console.log(`(Vida restante de ${atacado.nombre}: ${atacado.vida})`)
+
         atacado.ataqueAleatorio(atacante);
   
         if (atacante.vida <= 0) {
+          atacante.vida = 0
+          console.log(`(Vida restante de ${atacante.nombre}: ${atacante.vida})`)
           console.log(`💀 ${atacante.nombre} ha muerto a manos de ${atacado.nombre}`);
           personajes.splice(personajes.indexOf(atacante), 1);
   
@@ -175,7 +181,10 @@ function luchar(personajes) {
           if (personajes.indexOf(atacado) < i) {
             i--;
           }
+        } else {
+          console.log(`(Vida restante de ${atacante.nombre}: ${atacante.vida})`)
         }
+
       }
     }
   }
@@ -183,11 +192,11 @@ function luchar(personajes) {
   console.log(`\n⚔️ ${personajes[0].nombre} ha ganado el juego`);
 }
 
-let Lev = new Mago('Lev', 600, 280, 200, 150)
-let Varus = new Mago('Varus', 500, 300, 300, 150)
-let Bvar = new Guerrero('Bvar', 1200, 100, 400, 100)
-let Goro = new Guerrero('Goro', 1000, 200, 200, 80)
-let Kass = new Arquero('Kass', 800, 400, 250, 200)
+let Lev = new Mago('Lev', 800, 280, 50, 150)
+let Varus = new Mago('Varus', 650, 300, 60, 150)
+let Bvar = new Guerrero('Bvar', 1200, 150, 100, 100)
+let Goro = new Guerrero('Goro', 1000, 200, 80, 80)
+let Kass = new Arquero('Kass', 750, 350, 70, 200)
 
 let arr = [Lev, Bvar, Kass, Varus, Goro]
 
